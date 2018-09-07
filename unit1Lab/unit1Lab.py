@@ -1,0 +1,5 @@
+print("I love Python\n")
+myName = input("Enter Your Name")
+print (myName + "\n")
+num = input("Enter a Number")
+print(int(num) + 5)
