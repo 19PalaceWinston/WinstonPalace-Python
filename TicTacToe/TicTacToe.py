@@ -5,7 +5,8 @@ def main(top1, top2, top3, mid1, mid2, mid3, bot1, bot2, bot3):
     print("   |   |  ")
     print("-----------")
     print(" X |   |  ")
-    start(top1, top2, top3, mid1, mid2, mid3, bot1, bot2, bot3)
+    player = input("1 or 2 Player")
+    start(top1, top2, top3, mid1, mid2, mid3, bot1, bot2, bot3,player)
 
 def roboStart(top1, top2, top3, mid1, mid2, mid3, bot1, bot2, bot3):
     x = 2
@@ -66,7 +67,10 @@ def start(top1, top2, top3, mid1, mid2, mid3, bot1, bot2, bot3):
         if x == 3:
             top3 = " X "
     print(top1 + top2 + top3 + "\n-----------\n"+ mid1 + mid2 + mid3 + "\n-----------\n" + bot1 + bot2 + bot3)
-    start2(top1, top2, top3, mid1, mid2, mid3, bot1, bot2, bot3)
+    if player == 1:
+        print("Robot Down")
+    if player == 2:
+        start2(top1, top2, top3, mid1, mid2, mid3, bot1, bot2, bot3)
 top1 = "   "
 top2 = "|   |"
 top3 = "   "
