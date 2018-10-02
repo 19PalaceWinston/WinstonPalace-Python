@@ -1,119 +1,135 @@
 import random
-def main(top1, top2, top3, mid1, mid2, mid3, bot1, bot2, bot3):
+def main():
     print("Type Cordinates for for move , Player will always be X's\n Example: 1,1 \n")
     print("   |   |  ")
     print("-----------")
     print("   |   |  ")
     print("-----------")
     print(" X |   |  ")
-    play = int(input("1 or 2 Player"))
+    play = int(input("1 or 2 Player - "))
+    if play == 1 or play ==2:
+        print(play,"Player Selected")
+    else:
+        print("Invalid Player Number")
+        quit()
     usedX = []
     usedY = []
-    start(top1, top2, top3, mid1, mid2, mid3, bot1, bot2, bot3, play, usedX, usedY)
+    board = ["   ","|   |", "   ", "   ", "|   |", "   ","   ", "|   |", "   ",]
+    player1(board,usedX,usedY,play)
 
-def rand(top1, top2, top3, mid1, mid2, mid3, bot1, bot2, bot3, play,usedX, usedY):
-    for z in usedX:
-        x = random.randint(1,4)
-        y = random.randint(1,4)
-        if x != usedX[z-1] and y != usedY[z-1]:
-            break
-    roboStart(top1, top2, top3, mid1, mid2, mid3, bot1, bot2, bot3, play, usedX, usedY,x,y)
-
-def roboStart(top1, top2, top3, mid1, mid2, mid3, bot1, bot2, bot3, play, usedX,usedY,x,y):
-    if y == 1:
-        if x == 1:
-            bot1 = " O "
-        if x == 2:
-            bot2 = "| O |"
-        if x == 3:
-            bot3 = " O "
-    if y == 2:
-        if x == 1:
-            mid1 = " O "
-        if x == 2:
-            mid2 = "| O |"
-        if x == 3:
-            mid3 = " O "
-    if y == 3:
-        if x == 1:
-            top1 = " O "
-        if x == 2:
-            top2 = "| O |"
-        if x == 3:
-            top3 = " O "
-    print("\n[][][][][][]\n\n" + top1 + top2 + top3 + "\n-----------\n"+ mid1 + mid2 + mid3 + "\n-----------\n" + bot1 + bot2 + bot3 + "\n")
-    start(top1, top2, top3, mid1, mid2, mid3, bot1, bot2, bot3, play, usedX, usedY)
-
-def start2(top1, top2, top3, mid1, mid2, mid3, bot1, bot2, bot3, play, usedX, usedY):
-    player = input("Enter your coordinates")
-    x,y = player.split(",")
-    x = int(x)
-    y = int(y)
-    if y == 1:
-        if x == 1:
-            bot1 = " O "
-        if x == 2:
-            bot2 = "| O |"
-        if x == 3:
-            bot3 = " O "
-    if y == 2:
-        if x == 1:
-            mid1 = " O "
-        if x == 2:
-            mid2 = "| O |"
-        if x == 3:
-            mid3 = " O "
-    if y == 3:
-        if x == 1:
-            top1 = " O "
-        if x == 2:
-            top2 = "| O |"
-        if x == 3:
-            top3 = " O "
-    print(top1 + top2 + top3 + "\n-----------\n"+ mid1 + mid2 + mid3 + "\n-----------\n" + bot1 + bot2 + bot3 + "\n")
-    start(top1, top2, top3, mid1, mid2, mid3, bot1, bot2, bot3, play, usedX, usedY)
-
-def start(top1, top2, top3, mid1, mid2, mid3, bot1, bot2, bot3, play, usedX, usedY):
-    player = input("Enter your coordinates")
-    x,y = player.split(",")
-    x = int(x)
-    y = int(y)
-    if y == 1:
-        if x == 1:
-            bot1 = " X "
-        if x == 2:
-            bot2 = "| X |"
-        if x == 3:
-            bot3 = " X "
-    if y == 2:
-        if x == 1:
-            mid1 = " X "
-        if x == 2:
-            mid2 = "| X |"
-        if x == 3:
-            mid3 = " X "
-    if y == 3:
-        if x == 1:
-            top1 = " X "
-        if x == 2:
-            top2 = "| X |"
-        if x == 3:
-            top3 = " X "
-    print(top1 + top2 + top3 + "\n-----------\n"+ mid1 + mid2 + mid3 + "\n-----------\n" + bot1 + bot2 + bot3)
+def player1(board, usedX, usedY, play):
+    coords = input("Enter Your Coordinates - ").split(",")
+    x = int(coords[0])
+    y = int(coords[1])
+    for a in range(len(usedX)):
+        if x == usedX[a] and y == usedY[a]:
+                print("Coordinates Already Used, Try Again")
+                player1(board, usedX, usedY, play)
+                return
     usedX.append(x)
     usedY.append(y)
+    if x == 1:
+        if y == 1:
+            board[6] = " X "
+        elif y == 2:
+            board[3] = " X "
+        elif y == 3:
+            board[0] = " X "
+    if x == 2:
+        if y == 1:
+            board[7] = "| X |"
+        elif y == 2:
+            board[4] = "| X |"
+        elif y == 3:
+            board[1] = "| X |"
+    if x == 3:
+        if y == 1:
+            board[8] = " X "
+        elif y == 2:
+            board[5] = " X "
+        elif y == 3:
+            board[2] = " X "
+    print()
+    print(board[0]+board[1]+board[2]+"\n-----------\n"+board[3]+board[4]+board[5]+"\n-----------\n"+board[6]+board[7]+board[8])
+    print()
     if play == 1:
-        rand(top1, top2, top3, mid1, mid2, mid3, bot1, bot2, bot3, play, usedX, usedY)
-    if play == 2:
-        start2(top1, top2, top3, mid1, mid2, mid3, bot1, bot2, bot3, play)
-top1 = "   "
-top2 = "|   |"
-top3 = "   "
-mid1 = "   "
-mid2 = "|   |"
-mid3 = "   "
-bot1 = "   "
-bot2 = "|   |"
-bot3 = "   "
-used = []
-main(top1, top2, top3, mid1, mid2, mid3, bot1, bot2, bot3)
+        robot(board, usedX, usedY, play)
+    elif play == 2:
+        player2(board, usedX, usedY, play)
+    else:
+        quit()
+
+def player2(board, usedX, usedY, play):
+    coords = input("Enter Your Coordinates - ").split(",")
+    x = int(coords[0])
+    y = int(coords[1])
+    for a in range(len(usedX)):
+        if x == usedX[a] and y == usedY[a]:
+                print("Coordinates Already Used, Try Again")
+                player2(board, usedX, usedY, play)
+                return
+    usedX.append(x)
+    usedY.append(y)
+    if x == 1:
+        if y == 1:
+            board[6] = " O "
+        elif y == 2:
+            board[3] = " O "
+        elif y == 3:
+            board[0] = " O "
+    if x == 2:
+        if y == 1:
+            board[7] = "| O |"
+        elif y == 2:
+            board[4] = "| O |"
+        elif y == 3:
+            board[1] = "| O |"
+    if x == 3:
+        if y == 1:
+            board[8] = " O "
+        elif y == 2:
+            board[5] = " O "
+        elif y == 3:
+            board[2] = " O "
+    print()
+    print(board[0]+board[1]+board[2]+"\n-----------\n"+board[3]+board[4]+board[5]+"\n-----------\n"+board[6]+board[7]+board[8])
+    print()
+    player1(board, usedX, usedY, play)
+
+
+def robot(board, usedX, usedY, play):
+    x = random.randint(1,3)
+    y = random.randint(1,3)
+    for a in range(len(usedX)):
+        if x == usedX[a] and y == usedY[a]:
+                robot(board, usedX, usedY, play)
+                return
+    usedX.append(x)
+    usedY.append(y)
+    if x == 1:
+        if y == 1:
+            board[6] = " O "
+        elif y == 2:
+            board[3] = " O "
+        elif y == 3:
+            board[0] = " O "
+    if x == 2:
+        if y == 1:
+            board[7] = "| O |"
+        elif y == 2:
+            board[4] = "| O |"
+        elif y == 3:
+            board[1] = "| O |"
+    if x == 3:
+        if y == 1:
+            board[8] = " O "
+        elif y == 2:
+            board[5] = " O "
+        elif y == 3:
+            board[2] = " O "
+    print()
+    print(board[0]+board[1]+board[2]+"\n-----------\n"+board[3]+board[4]+board[5]+"\n-----------\n"+board[6]+board[7]+board[8])
+    print()
+    player1(board, usedX, usedY, play)
+
+main()
