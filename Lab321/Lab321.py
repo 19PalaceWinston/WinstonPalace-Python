@@ -45,7 +45,7 @@ def letterGrade(grades,gradeLength):
 def gradeCheck(grades, gradeLength):
     letGrade = letterGrade(grades, gradeLength)
     if letGrade == "A" or letGrade == "B" or letGrade == "C":
-        return "Congradulations you are passing"
+        return "Congratulations you are passing"
     else:
         return "You better get to work - you are failing"
 
