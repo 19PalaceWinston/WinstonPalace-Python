@@ -3,11 +3,18 @@ def main():
     print("Bellarmine Student current grade point average")
     gradeNum = int(input("What grade are you in? - "))
     print("Congrats you are a", schoolYear(gradeNum))
-    grades = [86.5, 75.3, 98.9, 92.3]
+    grades = getGrades()
     gradeLength = len(grades)
     print("Your current average gade is -",round(avgGrade(grades, gradeLength),2))
     print("Your current Letter Grade is a -",letterGrade(grades, gradeLength))
     print(gradeCheck(grades, gradeLength))
+
+def getGrades():
+    num = int(input("How many grades are there? "))
+    grade = []
+    for x in range(0,num):
+        grade.append(int(input("Enter a grade - ")))
+    return grade
 
 #returns what grade you are in based on number
 def schoolYear(gradeNum):
@@ -24,7 +31,7 @@ def schoolYear(gradeNum):
 
 #returns average grade
 def avgGrade(grades,gradeLength):
-    totalGrade = 0;
+    totalGrade = 0
     for x in range (gradeLength):
         totalGrade = totalGrade + grades[x]
     return totalGrade/gradeLength
