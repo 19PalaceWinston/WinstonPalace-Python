@@ -1,8 +1,43 @@
 
 def main(weekends):
-    month = input("What month is you birth day in? - ").lower()
+    month = input("What month is you birth day in? - ")
+    numbers = [1,2,3,4,5,6,7,8,9,10,11,12]
+    monthNum = 0
+    if int(month) in numbers:
+        monthNum = int(month)
+        month = int(month)
+        print("true")
+    if month == 1:
+            month = "jan"
+    if month == 2:
+            month = "feb"
+    if month == 3:
+            month = "mar"
+    if month == 4:
+            month = "apr"
+    if month == 5:
+            month = "may"
+    if month == 6:
+            month = "jun"
+    if month == 7:
+            month = "jul"
+    if month == 8:
+            month = "aug"
+    if month == 9:
+            month = "sep"
+    if month == 10:
+            month = "oct"
+    if month == 11:
+            month = "oct"
+    if month == 12:
+            month = "dec"
     day = int(input("What day is your birthday on? - "))
-    monthNum = ""
+    next = "false"
+    for x in range(len(weekends[month])):
+        if day+1 == weekends[month][x]:
+            next = "true"
+        if day-1 == weekends[month][x]:
+            next = "true"
     if month == "jan":
         monthNum = 1
     if month == "feb":
@@ -29,6 +64,8 @@ def main(weekends):
         monthNum = 12
     if day in weekends[month]:
         print(str(monthNum) + "/"+ str(day) +"/2018 falls on a weekend")
+    elif next == "true":
+        print(str(monthNum) + "/"+ str(day) +"/2018 falls next to a weekend")
     else:
         print(str(monthNum) + "/"+ str(day) +"/2018 does not fall on a weekend")
 
