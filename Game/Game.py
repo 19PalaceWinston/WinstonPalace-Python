@@ -55,6 +55,13 @@ class Enemy(object):
         self.hitBox = (self.x, self.y, 80, 80)
         #pygame.draw.rect(screen, (255,0,0), self.hitBox,2)
 
+def draw_text(surf, text, size, x, y):
+    font = pygame.font.Font(font_name, size)
+    text_surface = font.render(text, True,(255,255,255))
+    text_rect = text_surface.get_rect()
+    text_rect.midtop = (x, y)
+    surf.blit(text_surface, text_rect)
+
 def update(running):
     r = 0
     b = 0
@@ -80,8 +87,7 @@ def update(running):
          #   player.y = plat.y-80
         player.handle_keys()
         player.draw(screen)
-        scoretext = myfont.render("Score {0}".format(score), 1, (0,0,0))
-        screen.blit(scoretext, (5, 10))
+        draw_text(screen, ("Score: "+str(score)), 50, 100, 0)
         for s in range(len(temp)):
             enemies.pop(temp[s])
         temp = []
@@ -96,7 +102,7 @@ def update(running):
             enemies[z].draw(screen)
         pygame.display.update()
 
+font_name = pygame.font.match_font('arial')
 player = Player()
-myfont = pygame.font.SysFont("monospace", 16)
 update(running)
 pygame.quit()
