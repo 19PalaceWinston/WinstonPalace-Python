@@ -1,3 +1,6 @@
+#
+# How to play: use the arrows to guide chrome to the internet explorers for points
+#
 import pygame, random
 
 pygame.init()
@@ -69,6 +72,7 @@ def update(running):
     rc = True
     bc = True
     rg =  True
+    color = (random.randint(0,255),random.randint(0,255),random.randint(0,255))
     score = 0
     temp = []
     platforms = []
@@ -82,15 +86,24 @@ def update(running):
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_ESCAPE:
                     running = False
-        screen.fill((0,0,155))
+        #(abs((player.y/5)),abs((player.x-190)/2),155)
+        screen.fill(color)
         #if player.y == plat.y-79.5 and player.x < plat.x + 150 and player.x > plat.x - 100:
          #   player.y = plat.y-80
         player.handle_keys()
         player.draw(screen)
         draw_text(screen, ("Score: "+str(score)), 50, 100, 0)
+        if len(platforms) == 0:
+            for q in range(5):
+                platforms.append(Platform(random.randint(0,700),random.randint(0,700)))
+                enemies.append(Enemy(random.randint(0,700),random.randint(0,700)))
         for s in range(len(temp)):
             enemies.pop(temp[s])
         temp = []
+        if player.x > 620:
+            player.x = 619
+        if player.x < 0:
+            player.x = 1
         for x in range(len(platforms)):
             if player.y == platforms[x].y-79.5 and player.x < platforms[x].x + 150 and player.x > platforms[x].x - 100:
                 player.y = platforms[x].y-80
@@ -100,6 +113,11 @@ def update(running):
                 temp.append(z)
                 score += 1
             enemies[z].draw(screen)
+        if player.y > 1000:
+            player.y = 0
+            platforms = []
+            enemies = []
+            color = (random.randint(0,100),random.randint(0,50),random.randint(0,255))
         pygame.display.update()
 
 font_name = pygame.font.match_font('arial')
